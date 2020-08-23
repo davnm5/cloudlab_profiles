@@ -43,26 +43,18 @@ import geni.rspec.emulab as emulab
 import geni.rspec.igext as IG
 import geni.rspec.pg as RSpec
 
-
 git_tar_scripts= 'https://github.com/davnm5/cloudlab_profiles/raw/master/scripts.tar.gz'
-# for ubuntu 16.04: 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU16-64-STD'
 disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD';
-#hardware_type = 'pc3000' 
 hardware_type = 'd430' 
 storage_capacity = '200GB';
 k8s_version = "v1.17.2";
 
 # Create a portal object,
 pc = portal.Context()
-
-# leared this from: https://www.emulab.net/portal/show-profile.php?uuid=f6600ffd-e5a7-11e7-b179-90e2ba22fee4
 pc.defineParameter("computeNodeCount", "Number of slave/compute nodes",
                    portal.ParameterType.INTEGER, 1)
 params = pc.bindParameters()
-
-# Create a Request object to start building the RSpec.
 request = pc.makeRequestRSpec()
-
 
 #rspec = RSpec.Request()
 tour = IG.Tour()

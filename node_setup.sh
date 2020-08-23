@@ -44,15 +44,6 @@ DEPLOY_CONFIG="${WORKINGDIR}/cloudlab_profiles/$K8SVERSION/kube-deploy-yaml/"
 mkdir -p $HOME && cd $HOME
 export KUBECONFIG=$HOME/config
 
-cd $WORKINGDIR
-
-wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
-tar xzf node_exporter-1.0.1.linux-amd64.tar.gz
-wget https://github.com/prometheus/prometheus/releases/download/v2.20.0-rc.0/prometheus-2.20.0-rc.0.linux-amd64.tar.gz
-tar xzf prometheus-2.20.0-rc.0.linux-amd64.tar.gz
-wget https://dl.grafana.com/oss/release/grafana-7.1.0.linux-amd64.tar.gz
-tar xzf grafana-7.1.0.linux-amd64.tar.gz
-
 
 ### Commands from RIC infra install
 ### ric-infra/00-Kubernetes/etc/infra.rc
@@ -231,7 +222,8 @@ cd /mnt/extra/
 mv node_setup.sh node_setup.sh-old
 
 cd kube-safe-scheduler
-docker build -f dockerfiles/Dockerfile.safe -t kube-sched-ext-safe:0.0 . && cd /mnt/extra/
+sudo docker build -f dockerfiles/Dockerfile.safe -t kube-sched-ext-safe:0.0 . 
+cd node-annotator/usage/ && sudo docker build . -t node-annotator:1.13.5
 
 REDIS='redis-6.0.5/'
 DIR_RFT='/mnt/extra/xapps/rft-redis'
