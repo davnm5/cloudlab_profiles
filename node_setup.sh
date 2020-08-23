@@ -216,7 +216,7 @@ fi
 echo "FINISHED part copied from RIC"
 
 #Rename script file to avoid reinstall on boot
-
+sudo apt-get install stress-ng
 echo "Rename script file to avoid reinstall on boot..."
 cd /mnt/extra/
 mv node_setup.sh node_setup.sh-old
